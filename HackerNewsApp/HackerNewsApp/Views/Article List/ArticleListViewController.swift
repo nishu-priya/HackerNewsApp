@@ -59,10 +59,12 @@ class ArticleListViewController: UIViewController, UITableViewDelegate, UITableV
             viewModel.fetchArticle(row: indexPath.row)
         }
     }
-    
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        viewModel.cancelTaskIfAnyForRow(row: indexPath.row)
+    }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if viewModel.story(row: indexPath.row) == nil {
-            return 0
+            return UITableView.automaticDimension
         } else {
             return UITableView.automaticDimension
         }

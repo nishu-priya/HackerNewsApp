@@ -33,6 +33,7 @@
 		9821B0312160D753004214BD /* ArticleContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9821B0302160D753004214BD /* ArticleContentCell.swift */; };
 		9821B0332160DAB6004214BD /* ArticleDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9821B0322160DAB6004214BD /* ArticleDetailViewModel.swift */; };
 		9821B0352160DB1E004214BD /* ArticleCommentCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9821B0342160DB1E004214BD /* ArticleCommentCellViewModel.swift */; };
+		9821B03D21611AC2004214BD /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9821B03C21611AC2004214BD /* Extensions.swift */; };
 		990738FAB3C8E1BC77BE7E74 /* Pods_HackerNewsApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BD19E57238DFE513F8AC04F /* Pods_HackerNewsApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +80,7 @@
 		9821B0302160D753004214BD /* ArticleContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleContentCell.swift; sourceTree = "<group>"; };
 		9821B0322160DAB6004214BD /* ArticleDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetailViewModel.swift; sourceTree = "<group>"; };
 		9821B0342160DB1E004214BD /* ArticleCommentCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCommentCellViewModel.swift; sourceTree = "<group>"; };
+		9821B03C21611AC2004214BD /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		D39A169D0375E37AE9BE71E8 /* Pods-HackerNewsApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackerNewsApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-HackerNewsApp/Pods-HackerNewsApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -140,6 +142,7 @@
 				9821AFF8215F5F2E004214BD /* Models */,
 				9821B00C215FB8B0004214BD /* Utilities */,
 				9821AFFC215F5F5D004214BD /* Resources */,
+				9821B03B21611AAC004214BD /* Extensions */,
 				9821AFFB215F5F4D004214BD /* AppDelegate */,
 			);
 			path = HackerNewsApp;
@@ -289,6 +292,14 @@
 				9821B0302160D753004214BD /* ArticleContentCell.swift */,
 			);
 			path = ArticleDetail;
+			sourceTree = "<group>";
+		};
+		9821B03B21611AAC004214BD /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				9821B03C21611AC2004214BD /* Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		A80ABA0513782B322EB599DF /* Pods */ = {
@@ -489,6 +500,7 @@
 				9821B015215FD39C004214BD /* FetchArticleListService.swift in Sources */,
 				9821AFD9215F5D83004214BD /* AppDelegate.swift in Sources */,
 				9821B0332160DAB6004214BD /* ArticleDetailViewModel.swift in Sources */,
+				9821B03D21611AC2004214BD /* Extensions.swift in Sources */,
 				9821B007215FA185004214BD /* LoginViewModel.swift in Sources */,
 				9821B0212160902D004214BD /* ArticleListViewModel.swift in Sources */,
 				9821B0352160DB1E004214BD /* ArticleCommentCellViewModel.swift in Sources */,
@@ -659,7 +671,10 @@
 				DEVELOPMENT_TEAM = QBTU833AC9;
 				INFOPLIST_FILE = HackerNewsApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nishu.HackerNewsApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -676,7 +691,10 @@
 				DEVELOPMENT_TEAM = QBTU833AC9;
 				INFOPLIST_FILE = HackerNewsApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nishu.HackerNewsApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -692,7 +710,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QBTU833AC9;
 				INFOPLIST_FILE = HackerNewsAppTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nishu.HackerNewsAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -709,7 +731,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QBTU833AC9;
 				INFOPLIST_FILE = HackerNewsAppTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nishu.HackerNewsAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;

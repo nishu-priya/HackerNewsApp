@@ -25,7 +25,7 @@ class ArticleCommentCell: UITableViewCell  {
         if let comment = self.viewModel?.comment() {
             let time = Utils.timeFromUnix(time: comment.time)
             self.titleLabel.text = "\(Utils.offsetFrom(time)) . \(comment.by)"
-            self.subtitleLabel.text = comment.text
+            self.subtitleLabel.text = comment.text.html2String
         }
         self.selectionStyle = .none
     }

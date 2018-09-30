@@ -17,7 +17,7 @@ class ArticleListViewModel {
     
     var articleIds: [Int] = []
     weak var delegate: ArticleListViewModelDelegate?
-    var taskId: Int?
+    var taskIds:[Int] = []
     
     func numberOfSection() -> Int {
         return 1
@@ -34,6 +34,7 @@ class ArticleListViewModel {
             }
             if let list = list {
                 self.articleIds = list
+                self.taskIds = Array(repeating: 0, count: list.count)
                 self.delegate?.articleListFetched()
             }
         }
@@ -44,7 +45,7 @@ class ArticleListViewModel {
             self.delegate?.articleFetchCompleted(row: row)
             return
         }
-        taskId = ArticleDownloader.downloadArticle(id: articleIds[row]) { (error, story) in
+        let taskId = ArticleDownloader.downloadArticle(id: articleIds[row]) { (error, story) in
             if let error = error {
                 self.delegate?.fetchCompletedWithError(error: error)
             }
@@ -53,11 +54,20 @@ class ArticleListViewModel {
                 self.delegate?.articleFetchCompleted(row: row)
             }
         }
+        self.taskIds[row] = taskId ?? 0
     }
     func story(row: Int) -> Story? {
         return DBUtils.getStoryFor(id: articleIds[row])
     }
     
+    func cancelTaskIfAnyForRow(row: Int) {
+        let taskid = self.taskIds[row]
+        if taskid == 0 {
+            return
+        }
+        ArticleDownloader.cancelTaskWith(identifier: taskid)
+        self.taskIds[row] = 0
+    }
     func commentIds(row: Int) -> [Int] {
         if let story = DBUtils.getStoryFor(id: articleIds[row]) {
             return Array(story.kids)
