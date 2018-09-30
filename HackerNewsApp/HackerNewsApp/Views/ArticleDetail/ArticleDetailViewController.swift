@@ -84,15 +84,12 @@ class ArticleDetailViewController: UIViewController, UITableViewDelegate, UITabl
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if viewmodel.commentSelected  {
-            if viewmodel.comment(row: indexPath.row) == nil {
-                return 0
-            } else {
-                return UITableView.automaticDimension
-            }
+            return UITableView.automaticDimension
         } else {
             return self.view.frame.height
         }
     }
+
     // MARK: ArticleDetailViewModelDelegate
     func commentFetchCompleted(row: Int) {
         if self.viewmodel.commentSelected {

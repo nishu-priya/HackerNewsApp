@@ -14,8 +14,12 @@ protocol ArticleDetailViewModelDelegate: class {
 class ArticleDetailViewModel {
     var articleId: Int = 0
     weak var delegate: ArticleDetailViewModelDelegate?
-    var taskId: Int?
-    var commentIds: [Int] = []
+    var taskIds:[Int] = []
+    var commentIds: [Int] = [] {
+        didSet {
+            self.taskIds = Array(repeating: 0, count: commentIds.count)
+        }
+    }
     var commentSelected: Bool = true
     
     init(id: Int) {
@@ -23,11 +27,11 @@ class ArticleDetailViewModel {
     }
     
     func fetchComment(row: Int) {
-        if let comment = DBUtils.getCommentFor(id: commentIds[row]) {
+        if DBUtils.getCommentFor(id: commentIds[row]) != nil {
             self.delegate?.commentFetchCompleted(row: row)
             return
         }
-        taskId = ArticleDownloader.downloadComment(id: commentIds[row]) { (error, comment) in
+        let taskId = ArticleDownloader.downloadComment(id: commentIds[row]) { (error, comment) in
             if let error = error {
                 self.delegate?.fetchCompletedWithError(error: error)
             }
@@ -36,6 +40,15 @@ class ArticleDetailViewModel {
                 self.delegate?.commentFetchCompleted(row: row)
             }
         }
+        self.taskIds[row] = taskId ?? 0
+    }
+    func cancelTaskIfAnyForRow(row: Int) {
+        let taskid = self.taskIds[row]
+        if taskid == 0 {
+            return
+        }
+        ArticleDownloader.cancelTaskWith(identifier: taskid)
+        self.taskIds[row] = 0
     }
     func comment(row: Int) -> Comment? {
         return DBUtils.getCommentFor(id: commentIds[row])
